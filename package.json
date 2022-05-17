@@ -1,0 +1,22 @@
+{
+  "name": "domain-testing",
+  "version": "1.0.0",
+  "description": "Cypress test framework for several scenarios against Domain website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ucaybas/domain-testing.git"
+  },
+  "author": "Umit Caybas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ucaybas/domain-testing/issues"
+  },
+  "homepage": "https://github.com/Ucaybas/domain-testing#readme",
+  "devDependencies": {
+    "cypress": "^9.6.1"
+  }
+}
