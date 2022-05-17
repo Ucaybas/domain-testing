@@ -1,21 +1,15 @@
 class HomePage {
 
-    visit() {
-        cy.visit({
-            url: "/",
-            headers: {
-                "Accept-Encoding": "gzip, deflate"
-            }
-        });
+    input = {
+        search: () => {
+            return cy.get('[data-testid="typeahead__input-item-wrapper"]');
+        }
     }
 
-    validatePageUrl(page = "/") {
-        return cy.url().should('include', page);
-    }
-
-    interceptCall(call, alias) {
-        return cy.intercept(call).as(alias);
-
+    button = {
+        search: () => {
+            return cy.get('[data-testid="search-button"]');
+        }
     }
 
     navigation = {
@@ -42,10 +36,23 @@ class HomePage {
         }
     }
 
+    visit() {
+        cy.visit({
+            url: "/",
+            headers: {
+                "Accept-Encoding": "gzip, deflate"
+            }
+        });
+    }
 
+    validatePageUrl(page = "/") {
+        return cy.url().should('include', page);
+    }
 
+    interceptCall(call, alias) {
+        return cy.intercept(call).as(alias);
+
+    }
 }
 
 export default HomePage
-
-

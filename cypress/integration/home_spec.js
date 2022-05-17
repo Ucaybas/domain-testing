@@ -1,7 +1,5 @@
 import HomePage from "../pages/HomePage"
 
-
-
 describe('Scenario 1 - Navigate to all menu items and verify pages load', () => {
     const home = new HomePage();
     const trackingCall = "https://api-js.mixpanel.com/track/*";
@@ -72,7 +70,23 @@ describe('Scenario 1 - Navigate to all menu items and verify pages load', () => 
         cy.wait(["@getTrackingEvent"], {timeout: 10000});
         home.validatePageUrl("/rural");
     });
+});
 
+describe('Scenario 2 - Search for Sydney and verify page loads', () => {
+    const home = new HomePage();
+    const trackingCall = "https://api-js.mixpanel.com/track/*";
 
-  })
-  
+    before('Go to home page', () => {
+        home.visit();
+    });
+
+    it('Search for Sydney', () => {
+        home.input.search().type('Sydney');
+        home.button.search().click();
+
+        // Wait for tracking event to fire & validate URL
+        cy.intercept(trackingCall).as("getTrackingEvent");
+        cy.wait(["@getTrackingEvent"], {timeout: 10000});
+        home.validatePageUrl("/sale/?excludeunderoffer=1&suburb=sydney-nsw-2000");
+    })
+});
