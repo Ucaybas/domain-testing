@@ -2,11 +2,20 @@ class HomePage {
 
     visit() {
         cy.visit({
-            url: "https://www.domain.com.au/",
+            url: "/",
             headers: {
                 "Accept-Encoding": "gzip, deflate"
             }
         });
+    }
+
+    validatePageUrl(page = "/") {
+        return cy.url().should('include', page);
+    }
+
+    interceptCall(call, alias) {
+        return cy.intercept(call).as(alias);
+
     }
 
     navigation = {
@@ -32,6 +41,7 @@ class HomePage {
             return cy.get('[data-testid="rural-navigation"]')
         }
     }
+
 
 
 }
